@@ -40,6 +40,7 @@ func (s *BlockonomicsHandlers) NewAddress(w http.ResponseWriter, r *http.Request
 		data.Reset = 1
 	}
 	data.Account = r.URL.Query().Get("match_account")
+	data.Crypto = r.URL.Query().Get("crypto")
 
 	body, err := json.Marshal(&data)
 	if err != nil {
@@ -103,7 +104,7 @@ func TestClient(t *testing.T) {
 		c := NewClient("token", WithTimeout(time.Duration(30)*time.Second))
 		c.APIBase = b.server.URL
 
-		_, err := c.NewAddress("", false)
+		_, err := c.NewAddress("", "BTC", false)
 		if !errors.Is(err, ErrUnauthorised) {
 			t.Error("must be error: ErrUnauthorised")
 		}

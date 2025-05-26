@@ -16,6 +16,7 @@ func main() {
 		addr,
 		txid,
 		account,
+		crypto,
 		currency,
 		description,
 		tag string
@@ -43,6 +44,7 @@ func main() {
 	case "addr_new":
 		cmd.StringVar(&token, "token", "", "access token to API Blockonomics")
 		cmd.StringVar(&account, "account", "", "get address for account")
+		cmd.StringVar(&crypto, "crypto", "", "get address for crypto")
 		cmd.BoolVar(&reset, "reset", false, "reset prev address")
 	case "balance":
 		cmd.StringVar(&token, "token", "", "access token to API Blockonomics")
@@ -87,7 +89,7 @@ func main() {
 		fmt.Println(api.AddrMonDelete(addr))
 
 	case "addr_new":
-		dump(api.NewAddress(account, reset))
+		dump(api.NewAddress(account, crypto, reset))
 
 	case "balance":
 		dump(api.Balance(addr))
