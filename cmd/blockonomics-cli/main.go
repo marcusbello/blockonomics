@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/centum/blockonomics"
+	"github.com/marcusbello/blockonomics"
 )
 
 func main() {
